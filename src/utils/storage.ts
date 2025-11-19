@@ -39,6 +39,7 @@ export const STORAGE_KEYS = {
   CHAT_HISTORY: 'chefai_chat_history',
   PORTFOLIO: 'chefai_portfolio',
   NOTIFICATIONS: 'chefai_notifications',
-  SETTINGS: 'chefai_settings'
+  SETTINGS: 'chefai_settings',
+  CUSTOM_RECIPES: 'chefai_custom_recipes'
 } as const;
 

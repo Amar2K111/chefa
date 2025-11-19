@@ -13,6 +13,7 @@ interface HomeScreenProps {
   onStartCooking: () => void;
   onRecipeClick: (recipe: Recipe) => void;
   onTabChange: (tab: TabId) => void;
+  onPhotoToRecipeClick: () => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -23,7 +24,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onNotificationClick,
   onStartCooking,
   onRecipeClick,
-  onTabChange
+  onTabChange,
+  onPhotoToRecipeClick
 }) => {
   const challengeRecipe = recipes[0]; // Risotto crémeux
 
@@ -75,6 +77,27 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <p className="text-xs text-gray-500 mt-2">Plus que {100 - progress}% pour passer Niveau {userData.level + 1}</p>
       </div>
 
+      {/* WOW Feature - Photo → Recette */}
+      <div className="mb-6">
+        <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-12 -mb-12"></div>
+          <div className="relative z-10">
+            <div className="text-5xl mb-3 text-center">📸✨</div>
+            <h2 className="text-xl font-bold mb-2 text-center">Photo → Recette</h2>
+            <p className="text-sm text-center opacity-90 mb-4">
+              Ajoute une photo de n'importe quel plat et l'IA génère la recette complète !
+            </p>
+            <button
+              onClick={onPhotoToRecipeClick}
+              className="w-full bg-white text-orange-500 font-bold py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg"
+            >
+              🚀 Essayer maintenant
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
           <Trophy className="text-yellow-500" size={20} />
@@ -124,11 +147,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </button>
       </div>
 
-      <div>
-        <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-          <Book className="text-orange-500" size={20} />
-          Recettes pour toi
-        </h3>
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="font-bold text-gray-800 flex items-center gap-2">
+            <Book className="text-orange-500" size={20} />
+            Apprendre à cuisiner
+          </h3>
+          <button
+            onClick={() => onTabChange('library')}
+            className="text-sm text-orange-500 font-semibold hover:text-orange-600 transition-all"
+          >
+            Voir tout →
+          </button>
+        </div>
         <div className="space-y-3">
           {recipes.slice(1, 3).map(recipe => (
             <div
@@ -149,6 +180,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <ArrowRight size={20} className="text-orange-500" />
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 border-2 border-blue-200">
+        <div className="flex items-start gap-3">
+          <div className="text-4xl">📚</div>
+          <div className="flex-1">
+            <h3 className="font-bold text-gray-800 mb-1">Ma bibliothèque de recettes</h3>
+            <p className="text-sm text-gray-600 mb-3">Enregistre et organise toutes tes recettes préférées</p>
+            <button
+              onClick={() => onTabChange('library')}
+              className="w-full bg-blue-500 text-white font-semibold py-3 rounded-xl hover:bg-blue-600 transition-all shadow-md"
+            >
+              Ouvrir ma bibliothèque
+            </button>
+          </div>
         </div>
       </div>
     </div>

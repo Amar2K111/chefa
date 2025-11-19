@@ -65,6 +65,16 @@ interface AppContextType {
   // Shopping List
   showShoppingList: boolean;
   setShowShoppingList: (show: boolean) => void;
+  
+  // Custom Recipes
+  customRecipes: Recipe[];
+  addCustomRecipe: (recipe: Recipe) => void;
+  showAddRecipe: boolean;
+  setShowAddRecipe: (show: boolean) => void;
+  
+  // Photo to Recipe
+  showPhotoToRecipe: boolean;
+  setShowPhotoToRecipe: (show: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -115,6 +125,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     STORAGE_KEYS.SETTINGS + '_notifications',
     true
   );
+  
+  const [customRecipes, setCustomRecipes] = useLocalStorage<Recipe[]>(
+    STORAGE_KEYS.CUSTOM_RECIPES,
+    []
+  );
+  
+  const [showAddRecipe, setShowAddRecipe] = useState(false);
+  const [showPhotoToRecipe, setShowPhotoToRecipe] = useState(false);
 
   const toggleFavorite = useCallback((recipeId: number) => {
     setFavoriteRecipes(prev =>
@@ -135,6 +153,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       )
     );
   }, [setNotifications]);
+
+  const addCustomRecipe = useCallback((recipe: Recipe) => {
+    setCustomRecipes(prev => [...prev, recipe]);
+  }, [setCustomRecipes]);
 
   const value: AppContextType = {
     activeTab,
@@ -171,7 +193,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     notificationsEnabled,
     setNotificationsEnabled,
     showShoppingList,
-    setShowShoppingList
+    setShowShoppingList,
+    customRecipes,
+    addCustomRecipe,
+    showAddRecipe,
+    setShowAddRecipe,
+    showPhotoToRecipe,
+    setShowPhotoToRecipe
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

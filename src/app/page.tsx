@@ -14,6 +14,7 @@ import { NotificationsScreen } from '@/components/NotificationsScreen';
 import { SettingsScreen } from '@/components/SettingsScreen';
 import { ShoppingListScreen } from '@/components/ShoppingListScreen';
 import { AddRecipeScreen } from '@/components/AddRecipeScreen';
+import { PhotoToRecipeScreen } from '@/components/PhotoToRecipeScreen';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
 import { recipes } from '@/data/recipes';
@@ -63,7 +64,9 @@ const ChefAIApp = () => {
     customRecipes,
     addCustomRecipe,
     showAddRecipe,
-    setShowAddRecipe
+    setShowAddRecipe,
+    showPhotoToRecipe,
+    setShowPhotoToRecipe
   } = useApp();
 
   // Vérifier si c'est la première visite
@@ -204,6 +207,25 @@ const ChefAIApp = () => {
         />
       )}
 
+      {showPhotoToRecipe && (
+        <PhotoToRecipeScreen
+          onClose={() => setShowPhotoToRecipe(false)}
+          onAddRecipe={(recipe) => {
+            addCustomRecipe(recipe);
+            setShowPhotoToRecipe(false);
+            // Ajouter une notification
+            const newNotification = {
+              id: Date.now(),
+              title: '📸✨ Recette générée !',
+              message: `${recipe.title} a été créé à partir de ta photo`,
+              time: 'Maintenant',
+              read: false
+            };
+            setNotifications([...notifications, newNotification]);
+          }}
+        />
+      )}
+
       {activeCooking && selectedRecipe && (
         <CookingMode
           steps={cookingSteps}
@@ -220,7 +242,7 @@ const ChefAIApp = () => {
         />
       )}
 
-      {!activeCooking && !showOnboarding && !showChat && !selectedRecipe && !showNotifications && !showSettings && !showShoppingList && !showAddRecipe && (
+      {!activeCooking && !showOnboarding && !showChat && !selectedRecipe && !showNotifications && !showSettings && !showShoppingList && !showAddRecipe && !showPhotoToRecipe && (
         <>
           {activeTab === 'home' && (
             <HomeScreen
@@ -232,6 +254,7 @@ const ChefAIApp = () => {
               onStartCooking={handleStartCooking}
               onRecipeClick={handleRecipeClick}
               onTabChange={setActiveTab}
+              onPhotoToRecipeClick={() => setShowPhotoToRecipe(true)}
             />
           )}
 
@@ -246,6 +269,7 @@ const ChefAIApp = () => {
               onRecipeClick={handleRecipeClick}
               onToggleFavorite={toggleFavorite}
               onAddRecipeClick={() => setShowAddRecipe(true)}
+              onPhotoToRecipeClick={() => setShowPhotoToRecipe(true)}
             />
           )}
 

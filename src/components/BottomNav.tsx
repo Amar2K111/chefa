@@ -12,19 +12,19 @@ interface BottomNavProps {
 export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
   const tabs = [
     { id: 'home' as TabId, icon: Home, label: 'Accueil' },
-    { id: 'library' as TabId, icon: Book, label: 'Recettes' },
+    { id: 'library' as TabId, icon: Book, label: 'Bibliothèque' },
     { id: 'stats' as TabId, icon: BarChart3, label: 'Portfolio' },
     { id: 'profile' as TabId, icon: User, label: 'Profil' }
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
-      <div className="w-full bg-white border-t border-gray-200 px-6 py-3 flex justify-around items-center shadow-lg safe-area-inset-bottom">
+    <div className="fixed bottom-0 left-0 right-0 z-40" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)', width: '100%' }}>
+      <div className="w-full bg-white border-t border-gray-200 py-3 flex justify-around items-center shadow-lg safe-area-inset-bottom">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className="flex flex-col items-center gap-1 relative transition-all"
+            className="flex flex-col items-center gap-1 relative transition-all flex-1"
           >
             <tab.icon
               size={24}
