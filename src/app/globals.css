@@ -149,3 +149,14 @@ body > div:first-of-type {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* FAB Chat Button - Position fixe */
+.fab-chat-button {
+  right: 24px;
+}
+
+@media (min-width: 431px) {
+  .fab-chat-button {
+    right: calc((100vw - 430px) / 2 + 24px);
+  }
+}

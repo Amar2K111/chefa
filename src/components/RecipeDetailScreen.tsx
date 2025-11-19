@@ -21,7 +21,7 @@ export const RecipeDetailScreen: React.FC<RecipeDetailScreenProps> = ({
   onStartCooking
 }) => {
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up w-full">
       <div className="relative">
         <div className="h-64 bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center overflow-hidden">
           {recipe.photo ? (

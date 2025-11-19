@@ -35,7 +35,7 @@ export const PhotoCapture: React.FC<PhotoCaptureProps> = ({ onCapture, onClose }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 w-full">
       <div className="bg-white rounded-2xl p-6 max-w-md w-full">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-800">Prendre une photo</h2>

@@ -16,7 +16,7 @@ export const NotificationsScreen: React.FC<NotificationsScreenProps> = ({
   onMarkAsRead
 }) => {
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up w-full">
       <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-white sticky top-0 z-10">
         <h1 className="text-xl font-bold text-gray-800">Notifications</h1>
         <button onClick={onClose} className="hover:bg-gray-100 p-1 rounded-lg transition-all">

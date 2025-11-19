@@ -194,7 +194,7 @@ export const PhotoToRecipeScreen: React.FC<PhotoToRecipeScreenProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up w-full">
       <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-white sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <ChefaMascot size="sm" />

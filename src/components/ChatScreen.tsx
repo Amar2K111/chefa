@@ -29,7 +29,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ onClose, context }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-50 flex flex-col animate-slide-up" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-white z-50 flex flex-col animate-slide-up w-full">
       <div className="p-4 bg-gradient-to-r from-orange-500 to-red-500 text-white flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-3">
           <button onClick={onClose} className="hover:bg-white/20 p-1 rounded-lg transition-all">

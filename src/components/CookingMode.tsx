@@ -54,7 +54,7 @@ export const CookingMode: React.FC<CookingModeProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-900 text-white z-50 flex flex-col" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-gray-900 text-white z-50 flex flex-col w-full">
       <div className="p-4 bg-gray-800 flex items-center justify-between">
         <button
           onClick={handleQuit}

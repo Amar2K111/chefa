@@ -18,7 +18,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)', width: '100%' }}>
+    <div className="fixed bottom-0 left-0 right-0 z-40 w-full">
       <div className="w-full bg-white border-t border-gray-200 py-3 flex justify-around items-center shadow-lg safe-area-inset-bottom">
         {tabs.map(tab => (
           <button

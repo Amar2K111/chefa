@@ -200,8 +200,8 @@ export const AddRecipeScreen: React.FC<AddRecipeScreenProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
-      <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-white fixed top-0 left-0 right-0 z-10" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up w-full">
+      <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-white fixed top-0 left-0 right-0 z-10 w-full">
         <div className="flex items-center gap-3">
           <ChefaMascot size="sm" />
           <h1 className="text-xl font-bold text-gray-800">Créer un plat</h1>

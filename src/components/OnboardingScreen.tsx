@@ -16,7 +16,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({
   onComplete
 }) => {
   return (
-    <div className="fixed inset-0 bg-white z-50 flex flex-col" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="fixed inset-0 bg-white z-50 flex flex-col w-full">
       <div className={`flex-1 bg-gradient-to-br ${onboardingScreens[onboardingStep].color} flex flex-col items-center justify-center p-8 text-white`}>
         <div className="mb-8">
           <ChefaMascot size="xl" animated />
