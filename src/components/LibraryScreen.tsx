@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { Search, Clock, Lock, Heart, BookOpen, CheckCircle, Plus, Star } from 'lucide-react';
 import { Recipe, RecipeCategory, Technique } from '@/types';
 import { filterRecipesByCategory, filterRecipesBySearch, getAvailableCategories } from '@/utils/recipeFilters';
+import { ChefaMascot } from './ChefaMascot';
 
 interface LibraryScreenProps {
   recipes: Recipe[];
@@ -59,11 +60,14 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({
     <div className="p-4 pb-24 bg-gray-50 min-h-screen">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-800">Ma Bibliothèque</h1>
-            <p className="text-sm text-gray-600 mt-1">
-              {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''} enregistrée{allRecipes.length > 1 ? 's' : ''}
-            </p>
+          <div className="flex items-center gap-3">
+            <ChefaMascot size="sm" animated />
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800">Ma Bibliothèque</h1>
+              <p className="text-sm text-gray-600 mt-1">
+                {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''} enregistrée{allRecipes.length > 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
           <button
             onClick={onAddRecipeClick}
@@ -78,7 +82,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({
       {/* WOW Feature Banner */}
       <div className="mb-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-4 text-white shadow-lg">
         <div className="flex items-center gap-3">
-          <div className="text-3xl">📸✨</div>
+          <ChefaMascot size="sm" />
           <div className="flex-1">
             <p className="font-bold text-sm">Photo → Recette</p>
             <p className="text-xs opacity-90">Ajoute une photo, l'IA génère la recette !</p>
@@ -151,7 +155,9 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({
 
       {filteredRecipes.length === 0 ? (
         <div className="text-center py-12">
-          <div className="text-6xl mb-4">📚</div>
+          <div className="flex justify-center mb-4">
+            <ChefaMascot size="lg" animated />
+          </div>
           <p className="text-gray-500 font-semibold mb-2">Ta bibliothèque est vide</p>
           <p className="text-sm text-gray-400 mb-4">Commence par ajouter une recette ou explore les recettes disponibles</p>
           <button
@@ -178,8 +184,14 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({
                   </div>
                 </div>
               )}
-              <div className="text-6xl text-center py-8 bg-gradient-to-br from-orange-50 to-red-50">
-                {recipe.image}
+              <div className="text-6xl text-center py-8 bg-gradient-to-br from-orange-50 to-red-50 overflow-hidden relative">
+                {recipe.photo ? (
+                  <img src={recipe.photo} alt={recipe.title} className="w-full h-full absolute inset-0 object-cover" />
+                ) : (
+                  <div className="flex justify-center">
+                    <ChefaMascot size="md" />
+                  </div>
+                )}
               </div>
               <div className="p-3">
                 <h3 className="font-semibold text-sm text-gray-800 mb-2">{recipe.title}</h3>

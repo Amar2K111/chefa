@@ -62,7 +62,7 @@ export function useChat() {
   const [chatInput, setChatInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendMessage = useCallback((message?: string, context?: { step?: number; recipe?: string }) => {
+  const sendMessage = useCallback(async (message?: string, context?: { step?: number; recipe?: string }) => {
     const text = message || chatInput.trim();
     if (!text) return;
 
@@ -75,17 +75,50 @@ export function useChat() {
     setChatMessages(prev => [...prev, userMessage]);
     setChatInput('');
 
-    // Simulation d'une réponse IA avec délai
+    // Appel à l'API réelle
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text,
+          context: context
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        const aiMessage: ChatMessage = {
+          type: 'ai',
+          text: data.message,
+          time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+        };
+        setChatMessages(prev => [...prev, aiMessage]);
+      } else {
+        // Fallback vers les réponses locales si l'API échoue
+        const aiMessage: ChatMessage = {
+          type: 'ai',
+          text: getAIResponse(text, context),
+          time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+        };
+        setChatMessages(prev => [...prev, aiMessage]);
+      }
+    } catch (error) {
+      console.error('Erreur chat API:', error);
+      // Fallback vers les réponses locales en cas d'erreur
       const aiMessage: ChatMessage = {
         type: 'ai',
         text: getAIResponse(text, context),
         time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
       };
       setChatMessages(prev => [...prev, aiMessage]);
+    } finally {
       setIsLoading(false);
-    }, 800 + Math.random() * 500); // Délai réaliste entre 800ms et 1300ms
+    }
   }, [chatInput, setChatMessages]);
 
   const clearHistory = useCallback(() => {

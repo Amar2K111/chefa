@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { onboardingScreens } from '@/data/onboarding';
+import { ChefaMascot } from './ChefaMascot';
 
 interface OnboardingScreenProps {
   onboardingStep: number;
@@ -17,7 +18,9 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({
   return (
     <div className="fixed inset-0 bg-white z-50 flex flex-col" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
       <div className={`flex-1 bg-gradient-to-br ${onboardingScreens[onboardingStep].color} flex flex-col items-center justify-center p-8 text-white`}>
-        <div className="text-8xl mb-8 animate-bounce">{onboardingScreens[onboardingStep].emoji}</div>
+        <div className="mb-8">
+          <ChefaMascot size="xl" animated />
+        </div>
         <h1 className="text-3xl font-bold mb-4 text-center">{onboardingScreens[onboardingStep].title}</h1>
         <p className="text-lg text-center opacity-90">{onboardingScreens[onboardingStep].description}</p>
       </div>

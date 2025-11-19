@@ -2,7 +2,7 @@ import { OnboardingScreen } from '@/types';
 
 export const onboardingScreens: OnboardingScreen[] = [
   {
-    title: "Bienvenue sur Chef AI",
+    title: "Bienvenue sur Chefa",
     description: "Ton coach personnel pour devenir un vrai chef",
     emoji: "👨‍🍳",
     color: "from-orange-500 to-red-500"
@@ -14,7 +14,7 @@ export const onboardingScreens: OnboardingScreen[] = [
     color: "from-blue-500 to-purple-500"
   },
   {
-    title: "IA toujours disponible",
+    title: "Chefa toujours disponible",
     description: "Pose tes questions en temps réel pendant la cuisine",
     emoji: "🤖",
     color: "from-green-500 to-teal-500"

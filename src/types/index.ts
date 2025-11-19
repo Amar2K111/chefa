@@ -16,6 +16,8 @@ export interface Recipe {
   ingredients: string[];
   calories: number;
   protein: number;
+  photo?: string; // Photo du plat réalisé (base64)
+  steps?: CookingStep[]; // Instructions de cuisson spécifiques à cette recette
 }
 
 export interface Badge {

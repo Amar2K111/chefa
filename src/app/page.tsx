@@ -223,19 +223,26 @@ const ChefAIApp = () => {
             };
             setNotifications([...notifications, newNotification]);
           }}
+          onUseTextDescription={() => {
+            setShowPhotoToRecipe(false);
+            setShowAddRecipe(true);
+          }}
         />
       )}
 
       {activeCooking && selectedRecipe && (
         <CookingMode
-          steps={cookingSteps}
+          steps={selectedRecipe.steps && selectedRecipe.steps.length > 0 ? selectedRecipe.steps : cookingSteps}
           currentStep={currentStep}
           recipeTitle={selectedRecipe.title}
           onClose={() => {
                 setActiveCooking(false);
                 setCurrentStep(0);
           }}
-          onNext={() => setCurrentStep(Math.min(cookingSteps.length - 1, currentStep + 1))}
+          onNext={() => {
+            const steps = selectedRecipe.steps && selectedRecipe.steps.length > 0 ? selectedRecipe.steps : cookingSteps;
+            setCurrentStep(Math.min(steps.length - 1, currentStep + 1));
+          }}
           onPrevious={() => setCurrentStep(Math.max(0, currentStep - 1))}
           onComplete={handleCompleteCooking}
           onOpenChat={() => setShowChat(true)}

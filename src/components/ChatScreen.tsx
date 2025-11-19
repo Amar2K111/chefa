@@ -3,6 +3,7 @@
 import React from 'react';
 import { X, Send, Mic } from 'lucide-react';
 import { useChat } from '@/hooks/useChat';
+import { ChefaMascot } from './ChefaMascot';
 
 interface ChatScreenProps {
   onClose: () => void;
@@ -34,8 +35,9 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ onClose, context }) => {
           <button onClick={onClose} className="hover:bg-white/20 p-1 rounded-lg transition-all">
             <X size={24} />
           </button>
+          <ChefaMascot size="sm" />
           <div>
-            <h2 className="font-bold">Chef AI Assistant</h2>
+            <h2 className="font-bold">Chefa - Ton Chef Expert</h2>
             <p className="text-xs opacity-90">Toujours là pour t'aider</p>
           </div>
         </div>
@@ -45,8 +47,10 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({ onClose, context }) => {
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
         {chatMessages.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4 animate-bounce">💬</div>
-            <p className="text-gray-500 mb-2">Pose-moi n'importe quelle question</p>
+            <div className="flex justify-center mb-4">
+              <ChefaMascot size="lg" animated />
+            </div>
+            <p className="text-gray-500 mb-2 font-semibold">Pose-moi n'importe quelle question</p>
             <div className="mt-6 space-y-2">
               {suggestions.map((suggestion, idx) => (
                 <button

@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 👨‍🍳 Chefa - Ton Chef Expert Culinaire
 
-## Getting Started
+Application mobile pour apprendre à cuisiner et enregistrer tes recettes.
 
-First, run the development server:
+## 🚀 Démarrage Rapide
+
+### 1. Installation
+
+```bash
+npm install
+```
+
+### 2. Configuration de la Clé API Gemini
+
+1. Crée un fichier `.env.local` à la racine du projet
+2. Ajoute ta clé API Gemini :
+
+```bash
+GEMINI_API_KEY=ta_cle_api_ici
+```
+
+**Comment obtenir une clé API :**
+- Va sur [Google AI Studio](https://makersuite.google.com/app/apikey)
+- Crée une clé API
+- Copie-la dans `.env.local`
+
+### 3. Lancer l'Application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvre [http://localhost:3000](http://localhost:3000) dans ton navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Fonctionnalités Principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🎯 WOW Feature : Photo → Recette
+- Ajoute une photo de n'importe quel plat
+- L'IA génère automatiquement la recette complète
+- Ajoutée directement dans ta bibliothèque
 
-## Learn More
+### 📚 Ma Bibliothèque de Recettes
+- Enregistre toutes tes recettes
+- Favoris et organisation
+- Recherche et filtres par catégorie
 
-To learn more about Next.js, take a look at the following resources:
+### 🎓 Apprendre à Cuisiner
+- Guide étape par étape
+- Timer intégré
+- Chat IA contextuel pour poser des questions
+- Progression et gamification
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔧 Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Voir [SETUP.md](./SETUP.md) pour le guide complet de configuration et dépannage.
 
-## Deploy on Vercel
+## 📱 Format Mobile
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+L'application est optimisée pour **iPhone 15 Pro Max** (430px de largeur) et fonctionne sur tous les écrans mobiles.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Technologies
+
+- **Framework** : Next.js 16 avec React 19
+- **Styling** : Tailwind CSS
+- **IA** : Google Gemini 2.0 Flash Experimental
+- **Storage** : localStorage
+- **Icons** : Lucide React
+
+## 📝 Notes
+
+- Les données sont stockées localement dans le navigateur
+- La clé API Gemini est nécessaire pour les fonctionnalités IA
+- Voir SETUP.md pour la configuration détaillée

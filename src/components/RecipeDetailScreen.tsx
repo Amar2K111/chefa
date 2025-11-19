@@ -3,6 +3,7 @@
 import React from 'react';
 import { X, Heart, Clock, Zap, Target, BookOpen, CheckCircle } from 'lucide-react';
 import { Recipe } from '@/types';
+import { ChefaMascot } from './ChefaMascot';
 
 interface RecipeDetailScreenProps {
   recipe: Recipe;
@@ -22,8 +23,12 @@ export const RecipeDetailScreen: React.FC<RecipeDetailScreenProps> = ({
   return (
     <div className="fixed inset-0 bg-white z-50 overflow-y-auto animate-slide-up" style={{ maxWidth: '430px', left: '50%', transform: 'translateX(-50%)' }}>
       <div className="relative">
-        <div className="h-64 bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center text-9xl">
-          {recipe.image}
+        <div className="h-64 bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center overflow-hidden">
+          {recipe.photo ? (
+            <img src={recipe.photo} alt={recipe.title} className="w-full h-full object-cover" />
+          ) : (
+            <ChefaMascot size="xl" />
+          )}
         </div>
         <button
           onClick={onClose}

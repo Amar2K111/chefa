@@ -3,6 +3,7 @@
 import React from 'react';
 import { ChefHat, Bell, Flame, Trophy, Clock, BarChart3, Book, ArrowRight } from 'lucide-react';
 import { UserData, Recipe, TabId } from '@/types';
+import { ChefaMascot } from './ChefaMascot';
 
 interface HomeScreenProps {
   userData: UserData;
@@ -32,9 +33,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   return (
     <div className="p-4 pb-24 bg-gradient-to-b from-orange-50 to-white min-h-screen">
       <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Bonjour {userData.name} 👋</h1>
-          <p className="text-sm text-gray-500">Prêt à cuisiner aujourd'hui ?</p>
+        <div className="flex items-center gap-3">
+          <ChefaMascot size="md" animated />
+          <div>
+            <h1 className="text-2xl font-bold text-gray-800">Bonjour {userData.name} 👋</h1>
+            <p className="text-sm text-gray-500">Prêt à cuisiner aujourd'hui ?</p>
+          </div>
         </div>
         <div className="flex gap-2">
           <button
@@ -83,7 +87,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-12 -mb-12"></div>
           <div className="relative z-10">
-            <div className="text-5xl mb-3 text-center">📸✨</div>
+            <div className="flex justify-center mb-3">
+              <ChefaMascot size="md" />
+            </div>
             <h2 className="text-xl font-bold mb-2 text-center">Photo → Recette</h2>
             <p className="text-sm text-center opacity-90 mb-4">
               Ajoute une photo de n'importe quel plat et l'IA génère la recette complète !
@@ -104,7 +110,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <h2 className="text-lg font-bold text-gray-800">Défi du jour</h2>
         </div>
         <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-6 text-white shadow-lg">
-          <div className="text-6xl mb-3 text-center">{challengeRecipe?.image}</div>
+          <div className="flex justify-center mb-3">
+            <ChefaMascot size="md" />
+          </div>
           <h3 className="text-xl font-bold mb-2 text-center">{challengeRecipe?.title}</h3>
           <div className="flex items-center justify-center gap-4 mb-4 text-sm">
             <div className="flex items-center gap-1">
@@ -167,7 +175,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               onClick={() => onRecipeClick(recipe)}
               className="bg-white rounded-xl p-4 shadow-sm flex items-center gap-4 border border-gray-100 cursor-pointer hover:border-orange-300 hover:shadow-md transition-all"
             >
-              <div className="text-4xl">{recipe.image}</div>
+              <div className="text-4xl w-16 h-16 flex items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-orange-50 to-red-50 flex-shrink-0">
+                {recipe.photo ? (
+                  <img src={recipe.photo} alt={recipe.title} className="w-full h-full object-cover" />
+                ) : (
+                  <ChefaMascot size="sm" />
+                )}
+              </div>
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-800">{recipe.title}</h4>
                 <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chef AI - Ton coach culinaire personnel",
-  description: "Apprends à cuisiner avec l'aide de l'IA. Recettes, techniques et suivi de progression.",
+  title: "Chefa - Ton chef expert culinaire",
+  description: "Apprends à cuisiner avec Chefa, ton chef expert. Recettes, techniques et suivi de progression.",
 };
 
 export const viewport = {
