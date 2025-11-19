@@ -13,6 +13,7 @@ import { ProfileScreen } from '@/components/ProfileScreen';
 import { NotificationsScreen } from '@/components/NotificationsScreen';
 import { SettingsScreen } from '@/components/SettingsScreen';
 import { ShoppingListScreen } from '@/components/ShoppingListScreen';
+import { AddRecipeScreen } from '@/components/AddRecipeScreen';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
 import { recipes } from '@/data/recipes';
@@ -47,6 +48,7 @@ const ChefAIApp = () => {
     userData,
     updateUserData,
     notifications,
+    setNotifications,
     markNotificationAsRead,
     showNotifications,
     setShowNotifications,
@@ -57,7 +59,11 @@ const ChefAIApp = () => {
     notificationsEnabled,
     setNotificationsEnabled,
     showShoppingList,
-    setShowShoppingList
+    setShowShoppingList,
+    customRecipes,
+    addCustomRecipe,
+    showAddRecipe,
+    setShowAddRecipe
   } = useApp();
 
   // Vérifier si c'est la première visite
@@ -179,6 +185,25 @@ const ChefAIApp = () => {
         />
       )}
 
+      {showAddRecipe && (
+        <AddRecipeScreen
+          onClose={() => setShowAddRecipe(false)}
+          onAddRecipe={(recipe) => {
+            addCustomRecipe(recipe);
+            setShowAddRecipe(false);
+            // Ajouter une notification
+            const newNotification = {
+              id: Date.now(),
+              title: '🎉 Nouvelle recette ajoutée !',
+              message: `${recipe.title} a été ajouté à ta bibliothèque`,
+              time: 'Maintenant',
+              read: false
+            };
+            setNotifications([...notifications, newNotification]);
+          }}
+        />
+      )}
+
       {activeCooking && selectedRecipe && (
         <CookingMode
           steps={cookingSteps}
@@ -195,7 +220,7 @@ const ChefAIApp = () => {
         />
       )}
 
-      {!activeCooking && !showOnboarding && !showChat && !selectedRecipe && !showNotifications && !showSettings && !showShoppingList && (
+      {!activeCooking && !showOnboarding && !showChat && !selectedRecipe && !showNotifications && !showSettings && !showShoppingList && !showAddRecipe && (
         <>
           {activeTab === 'home' && (
             <HomeScreen
@@ -213,12 +238,14 @@ const ChefAIApp = () => {
           {activeTab === 'library' && (
             <LibraryScreen
               recipes={recipes}
+              customRecipes={customRecipes}
               techniques={techniques}
               favoriteRecipes={favoriteRecipes}
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               onRecipeClick={handleRecipeClick}
               onToggleFavorite={toggleFavorite}
+              onAddRecipeClick={() => setShowAddRecipe(true)}
             />
           )}
 
